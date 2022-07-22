@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import {useTagsQuery} from './queries';
 
 export default function Articles() {
@@ -8,8 +9,12 @@ export default function Articles() {
   return (
     <>
       {tags?.map(t => (
-        <p key={t.id}>{t.name}</p>
+        <StyledText key={t.id}>{t.name}</StyledText>
       ))}
     </>
   );
 }
+
+const StyledText = styled.p`
+  font-family: ${props => props.theme.fontFamiy};
+`;
