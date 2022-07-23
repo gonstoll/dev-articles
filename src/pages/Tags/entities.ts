@@ -1,4 +1,4 @@
-import {NamedEntity} from '../entities';
+import {NamedEntity} from '../../shared/entities';
 
 export interface Tag extends NamedEntity {
   bgColorHex: string;

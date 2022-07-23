@@ -1,5 +1,8 @@
 export const theme = {
-  fontFamiy: 'Inter, sans-serif',
+  fontFamiy: {
+    regular: 'Open sans, sans-serif',
+    code: 'Roboto mono, monospace',
+  },
 };
 
 export type Theme = typeof theme;

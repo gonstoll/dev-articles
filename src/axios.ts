@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {camelCaseMiddleware} from './utils/casing';
+import {camelCaseMiddleware} from './shared/utils/casing';
 
 const axiosInstance = axios.create({
   baseURL: 'https://dev.to/api/',
