@@ -1,5 +1,16 @@
 import axios from 'axios';
+import {camelCaseMiddleware} from './utils/casing';
 
-export default axios.create({
+const axiosInstance = axios.create({
   baseURL: 'https://dev.to/api/',
 });
+
+axiosInstance.interceptors.response.use(res => {
+  const transformedData = camelCaseMiddleware(res.data);
+  return {
+    ...res,
+    data: transformedData,
+  };
+});
+
+export default axiosInstance;

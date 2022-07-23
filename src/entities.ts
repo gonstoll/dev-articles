@@ -9,3 +9,7 @@ export interface NamedEntity extends Entity {
 export interface DeletableEntity extends Entity {
   isDeleted: boolean;
 }
+
+export interface Dictionary<T> {
+  [index: string]: T;
+}

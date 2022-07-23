@@ -17,4 +17,7 @@ export default defineConfig({
       api_key: undefined,
     },
   },
+  server: {
+    port: 3000,
+  }
 });
