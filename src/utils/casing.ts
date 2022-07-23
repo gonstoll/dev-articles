@@ -28,8 +28,9 @@ function convertEnumerableKeys(obj: unknown): any {
   }
 }
 
-export function camelCaseMiddleware(obj: unknown) {
+export function camelCaseMiddleware<T extends unknown>(obj: T): T {
   if (isCaseConvertible(obj)) {
     return convertEnumerableKeys(obj);
   }
+  return obj;
 }

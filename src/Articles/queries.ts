@@ -3,8 +3,8 @@ import axios from '../axios';
 import {Tag} from './entities';
 
 export function useTagsQuery() {
-  async function getTags() {
-    const {data} = await axios.get<Array<Tag>>('/tags');
+  async function getTags(): Promise<Array<Tag>> {
+    const {data} = await axios.get('/tags');
     return data;
   }
 
