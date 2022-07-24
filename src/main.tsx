@@ -1,10 +1,9 @@
-import React from 'react';
+import {StrictMode} from 'react';
 import ReactDOM from 'react-dom/client';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools';
-import {ThemeProvider} from 'styled-components';
-import {theme} from './theme';
 import App from './App';
+import {ThemeContextProvider} from './themeContext';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,12 +14,12 @@ const queryClient = new QueryClient({
 });
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
+  <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
+      <ThemeContextProvider>
         <App />
-      </ThemeProvider>
+      </ThemeContextProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
-  </React.StrictMode>
+  </StrictMode>
 );
