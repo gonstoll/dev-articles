@@ -1,37 +1,51 @@
 export interface Theme {
-  colors: {
-    background: string;
-    color: string;
-  };
   fontFamiy: {
     regular: string;
     code: string;
   };
+  breakpoints: {
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+  };
+  colors: {
+    text: string;
+    primary: string;
+  };
 }
 
-const black500 = '#1f1f1f';
-const white500 = '#fdfdfd';
+const black500 = '#343d46';
+const white500 = '#f6f8fa';
 
 const defaultTheme = {
   fontFamiy: {
-    regular: 'Open sans, sans-serif',
+    regular: 'Source Sans Pro, sans-serif',
     code: 'Roboto mono, monospace',
+  },
+  breakpoints: {
+    xs: '576px',
+    sm: '768px',
+    md: '992px',
+    lg: '1200px',
+    xl: '1600px',
   },
 };
 
 const lightTheme = {
   ...defaultTheme,
   colors: {
-    background: white500,
-    color: black500,
+    text: black500,
+    primary: white500,
   },
 };
 
 const darkTheme = {
   ...defaultTheme,
   colors: {
-    background: black500,
-    color: white500,
+    text: white500,
+    primary: black500,
   },
 };
 

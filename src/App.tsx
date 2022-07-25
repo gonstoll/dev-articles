@@ -1,4 +1,4 @@
-import {useLayoutEffect, lazy} from 'react';
+import {useLayoutEffect, lazy, Suspense} from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {createGlobalStyle, ThemeProvider} from 'styled-components';
 import {themes} from './theme';
@@ -8,8 +8,10 @@ const Tags = lazy(() => import('./pages/Tags'));
 const Articles = lazy(() => import('./pages/Articles'));
 
 const GlobalStyles = createGlobalStyle`
-  html, body {
-    background-color: ${({theme}) => theme.colors.background};
+  html, body, #root {
+    background-color: ${({theme}) => theme.colors.primary};
+    font-family: ${({theme}) => theme.fontFamiy.regular};
+    color: ${({theme}) => theme.colors.text};
     height: 100%;
     margin: 0;
   }
@@ -39,15 +41,27 @@ export default function App() {
     };
   }, [updateTheme]);
 
-  console.log('Rendering App');
-
   return (
     <ThemeProvider theme={themes[theme]}>
       <GlobalStyles />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Tags />} />
-          <Route path="/:tagName" element={<Articles />} />
+          <Route
+            path="/"
+            element={
+              <Suspense fallback="Loading...">
+                <Tags />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/:tagName"
+            element={
+              <Suspense fallback="Loading...">
+                <Articles />
+              </Suspense>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
