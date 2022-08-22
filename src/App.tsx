@@ -1,11 +1,11 @@
-import {useLayoutEffect, lazy, Suspense} from 'react';
+import * as React from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {createGlobalStyle, ThemeProvider} from 'styled-components';
 import {themes} from './theme';
 import {useThemeContext} from './themeContext';
 
-const Tags = lazy(() => import('./pages/Tags'));
-const Articles = lazy(() => import('./pages/Articles'));
+const Tags = React.lazy(() => import('./pages/Tags'));
+const Articles = React.lazy(() => import('./pages/Articles'));
 
 const GlobalStyles = createGlobalStyle`
   html, body, #root {
@@ -20,7 +20,7 @@ const GlobalStyles = createGlobalStyle`
 export default function App() {
   const {theme, updateTheme} = useThemeContext();
 
-  useLayoutEffect(() => {
+  React.useLayoutEffect(() => {
     const handleThemeChange = (e: MediaQueryListEvent) => {
       const theme = e.matches ? 'dark' : 'light';
       updateTheme(theme);
@@ -49,17 +49,17 @@ export default function App() {
           <Route
             path="/"
             element={
-              <Suspense fallback="Loading...">
+              <React.Suspense fallback="Loading...">
                 <Tags />
-              </Suspense>
+              </React.Suspense>
             }
           />
           <Route
             path="/:tagName"
             element={
-              <Suspense fallback="Loading...">
+              <React.Suspense fallback="Loading...">
                 <Articles />
-              </Suspense>
+              </React.Suspense>
             }
           />
         </Routes>

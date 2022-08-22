@@ -1,10 +1,4 @@
-import {
-  createContext,
-  ReactNode,
-  useCallback,
-  useContext,
-  useState,
-} from 'react';
+import * as React from 'react';
 import {Theme} from './entities';
 
 interface Context {
@@ -12,13 +6,13 @@ interface Context {
   updateTheme: (theme: Theme) => void;
 }
 
-const ThemeContext = createContext<Context>({
+const ThemeContext = React.createContext<Context>({
   theme: 'light',
   updateTheme: () => undefined,
 });
 
 export function useThemeContext() {
-  const context = useContext(ThemeContext);
+  const context = React.useContext(ThemeContext);
 
   if (context === undefined) {
     throw new Error('useThemeContext should be used inside a context provider');
@@ -27,10 +21,12 @@ export function useThemeContext() {
   return context;
 }
 
-export function ThemeContextProvider({children}: {children: ReactNode}) {
-  const [theme, setTheme] = useState<Theme>('light');
+export function ThemeContextProvider({
+  children,
+}: React.PropsWithChildren<unknown>) {
+  const [theme, setTheme] = React.useState<Theme>('light');
 
-  const updateTheme = useCallback((theme: Theme) => {
+  const updateTheme = React.useCallback((theme: Theme) => {
     setTheme(theme);
   }, []);
 

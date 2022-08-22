@@ -1,4 +1,4 @@
-import {StrictMode} from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom/client';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools';
@@ -14,12 +14,12 @@ const queryClient = new QueryClient({
 });
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <StrictMode>
+  <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ThemeContextProvider>
         <App />
       </ThemeContextProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
-  </StrictMode>
+  </React.StrictMode>
 );
